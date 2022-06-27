@@ -41,6 +41,11 @@ install(PROGRAMS scripts/tf_to_pose_publisher.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
+install(PROGRAMS scripts/modify_pose_topic.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+
 ##############
 ##   Test   ##
 ##############
