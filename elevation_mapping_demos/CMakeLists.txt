@@ -45,6 +45,12 @@ install(PROGRAMS scripts/modify_pose_topic.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
+install(PROGRAMS scripts/angular_position_from_bag.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+
+
 
 ##############
 ##   Test   ##

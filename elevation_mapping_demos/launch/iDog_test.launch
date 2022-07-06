@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <launch>
-
-
   <!-- Publish some points from the rosbag -->
-  <node pkg="rosbag" type="play" name="player" output="screen" args="--clock --loop /home/valenitn/catkin_ws_project/iDog.bag"/>
+  <node pkg="rosbag" type="play" name="player" output="screen" args="--loop /home/valenitn/catkin_ws_project/iDog.bag"/>
 
+  <!-- Add Covariance to the Pose data -->
   <node pkg="elevation_mapping_demos" type="modify_pose_topic.py" name="modify_pose"/>
+  
   <!-- Elevation mapping node -->
   <node pkg="elevation_mapping" type="elevation_mapping" name="elevation_mapping" output="screen">
     <rosparam command="load" file="$(find elevation_mapping_demos)/config/robots/IDog_config.yaml" />
