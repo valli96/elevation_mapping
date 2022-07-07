@@ -28,9 +28,9 @@ def main():
     global pose_pub
     rospy.init_node('pose_modifier', anonymous=True)
     rospy.Subscriber("/poseStamped_node", PoseStamped,
-                     callback, queue_size=1)
+                     callback, queue_size=10)
     pose_pub = rospy.Publisher("/poseStamped_with_covariance_node",
-                               PoseWithCovarianceStamped, queue_size=10)
+                               PoseWithCovarianceStamped, queue_size=100)
 
     rospy.spin()
 
