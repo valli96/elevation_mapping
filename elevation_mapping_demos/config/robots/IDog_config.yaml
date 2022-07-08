@@ -1,7 +1,7 @@
 # Robot.
 map_frame_id:                               map
 robot_base_frame_id:                        base_footprint
-robot_pose_with_covariance_topic:           /base_footprint_pose
+robot_pose_with_covariance_topic:           /poseStamped_with_covariance_node_2
 input_sources:
   front: # A name to identify the input source
     type: pointcloud # Supported types: pointcloud
