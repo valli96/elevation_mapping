@@ -12,6 +12,7 @@ input_sources:
     sensor_processor:
       type: perfect
 track_point_frame_id:                       base_footprint
+# track_point_frame_id:                       os1_lidar
 track_point_x:                              0.0
 track_point_y:                              0.0
 track_point_z:                              0.0
@@ -45,3 +46,4 @@ length_in_y_init_submap:                    1.6
 init_submap_height_offset:                  0.01
 init_submap_variance:                       0.001
 target_frame_init_submap:                   base_footprint
+# track_point_frame_id:                       os1_lidar

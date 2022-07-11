@@ -1,7 +1,3 @@
-# Robot.
-map_frame_id:                               map
-robot_base_frame_id:                        base_footprint
-robot_pose_with_covariance_topic:           /poseStamped_with_covariance_node_2
 input_sources:
   front: # A name to identify the input source
     type: pointcloud # Supported types: pointcloud
@@ -11,12 +7,14 @@ input_sources:
     sensor_processor:
       type: perfect
 
+# Robot.
+map_frame_id:                               map
+robot_base_frame_id:                        base_footprint
+robot_pose_with_covariance_topic:           /poseStamped_with_covariance_node_2
+robot_pose_cache_size: 200
 
 
 
-
-
-# robot_pose_cache_size: 200
 # track_point_x: 0.0
 # track_point_y: 0.0
 # track_point_z: 0.0
