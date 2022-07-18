@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Robot.
 map_frame_id:                               odom
 robot_base_frame_id:                        base_footprint
@@ -8,18 +7,11 @@ input_sources:
   front: # A name to identify the input source
     type: pointcloud # Supported types: pointcloud
     topic: /camera/depth/points_downsampled
-=======
-input_sources:
-  front: # A name to identify the input source
-    type: pointcloud # Supported types: pointcloud
-    topic: /points
->>>>>>> 4933bb0981adf458b3fabf15f22984501d85a11d
     queue_size: 1
     publish_on_update: true # Wheter to publish the elevation map after a callback from this source.
     sensor_processor:
       type: perfect
 
-<<<<<<< HEAD
 track_point_frame_id:                       base_footprint
 # track_point_frame_id:                       os1_lidar
 track_point_x:                              0.0
@@ -56,29 +48,3 @@ init_submap_height_offset:                  0.01
 init_submap_variance:                       0.001
 target_frame_init_submap:                   base_footprint
 # track_point_frame_id:                       os1_lidar
-=======
-# # Robot.
-map_frame_id:                               map
-track_point_frame_id: "base"
-# robot_pose_cache_size: 200
-# robot_pose_with_covariance_topic: "" # Leaving this empty skipps pose covariance updates.
-# robot_base_frame_id:                        base
-# track_point_x: 0.0
-# track_point_y: 0.0
-# track_point_z: 0.0
-
-# input_sources:
-#   front: # A name to identify the input source
-#     type: pointcloud # Supported types: pointcloud
-#     topic: /os1_cloud_node/points
-#     queue_size: 1
-#     publish_on_update: true # Wheter to publish the elevation map after a callback from this source.
-#     sensor_processor:
-#       type: perfect
-
-# # Robot.
-# map_frame_id:                               map
-# robot_base_frame_id:                        base_footprint
-# robot_pose_with_covariance_topic:           /poseStamped_with_covariance_node_2
-# robot_pose_cache_size: 200
->>>>>>> 4933bb0981adf458b3fabf15f22984501d85a11d
