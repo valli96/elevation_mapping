@@ -1,0 +1,16 @@
+input_sources:
+  camera: # A name to identify the input source
+    type: pointcloud # Supported types: pointcloud
+    # topic: "/os1_cloud_node/points"
+    topic: /camera/rgb/points
+    queue_size: 4
+    publish_on_update: true # Wheter to publish the elevation map after a callback from this source.
+    sensor_processor:
+      type: perfect
+
+# Robot.
+map_frame_id:                               map
+robot_base_frame_id:                        base_link
+track_point_frame_id:                       base_link
+robot_pose_with_covariance_topic:           /poseStamped_with_covariance_node_2
+robot_pose_cache_size: 200

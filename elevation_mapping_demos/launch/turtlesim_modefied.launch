@@ -3,6 +3,16 @@
 <!-- the idea is to remap the topics of the file and just change the pointcloud -->
 
 <launch>
+
+
+  <!-- <remap from="/os1_cloud_node/points" to="/camera/depth/points_downsampled"/> -->
+  <node pkg="rosbag" type="play" name="player" output="screen" args="--loop /home/vresapow/catkin_ws_project/iDog.bag"/>
+  
+  <!-- Setup a transform between the world and the robot -->
+  <node pkg="tf" type="static_transform_publisher" name="world_to_robot" args="2.0 6.0 0 0 0.0 0 base_footprint base_link"/>
+
+
+
   <!-- Start position of waffle robot in scene. -->
   <arg name="x_pos" default="-3.0" doc="Starting x coordinate of the robot in the simulation scene. "/>
   <arg name="y_pos" default="1.0"  doc="Starting y coordinate of the robot in the simulation scene. "/>
@@ -53,14 +63,10 @@
   </node>
 
 
-  <!-- Play rosbag in a loop & remap the pointcloud topic of the rosbag-->
-  <!-- <remap from="/os1_cloud_node/points" to="/camera/depth/points_downsampled"/> -->
-  <node pkg="rosbag" type="play" name="player" output="screen" args="--loop /home/vresapow/catkin_ws_project/iDog.bag"/>
-
 
   <!-- Launch elevation mapping node. -->
   <node pkg="elevation_mapping" type="elevation_mapping" name="elevation_mapping" output="screen">
-    <rosparam command="load" file="$(find elevation_mapping_demos)/config/robots/waffle_robot.yaml"/>
+    <rosparam command="load" file="$(find elevation_mapping_demos)/config/robots/test_iDog.yaml"/>
     <rosparam command="load" file="$(find elevation_mapping_demos)/config/postprocessing/postprocessor_pipeline.yaml"/>
   </node>
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <!-- Rosbag for pose -->
+  <node pkg="rosbag" type="play" name="player_pose" output="screen" args="--loop /home/vresapow/catkin_ws_project/iDog.bag"/>
+
+  <!-- Rosbag for Points -->
+  <node pkg="rosbag" type="play" name="player_points" output="screen" args="--loop /home/vresapow/catkin_ws_project/I3A.bag"/>
+
+
+  <!-- Setup a transform between the world and the robot -->
+  <node pkg="tf" type="static_transform_publisher" name="world_to_robot" args="2.0 6.0 0 0 0.0 0 /map /openni_rgb_optical_frame 100"/>
+
+  <!-- Add Covariance to the Pose data -->
+  <node pkg="elevation_mapping_demos" type="modify_pose_topic.py" name="modify_pose"/>
+ <!-- integration from the IMU values to get the angular position -->
+   <node pkg="elevation_mapping_demos" type="angular_position_from_bag.py" name="modify_pose_imu"/> 
+
+
+
+<!-- Elevation mapping node -->
+  <node pkg="elevation_mapping" type="elevation_mapping" name="elevation_mapping" output="screen">
+    <rosparam command="load" file="$(find elevation_mapping_demos)/config/elevation_maps/simple_demo_map.yaml" />
+    <rosparam command="load" file="$(find elevation_mapping_demos)/config/robots/test_new_point_cloud.yaml" />
+    <rosparam command="load" file="$(find elevation_mapping_demos)/config/postprocessing/postprocessor_pipeline.yaml" />
+  </node>
+
+  <!-- Launch visualizations for the resulting elevation map -->
+  <include file="$(find elevation_mapping_demos)/launch/visualization.launch" />  
+
+  <!-- Launch RViz with the demo configuration -->  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find elevation_mapping_demos)/rviz/elevation_map_visualization.rviz" />
+
+</launch>
+
+

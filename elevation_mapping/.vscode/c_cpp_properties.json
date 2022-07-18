@@ -1,0 +1,28 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/vresapow/catkin_ws_project/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/vresapow/catkin_ws_project/src/elevation_mapping/elevation_mapping/include/**",
+        "/home/vresapow/catkin_ws_project/src/kindr/include/**",
+        "/home/vresapow/catkin_ws_project/src/kindr_ros/kindr_ros/include/**",
+        "/home/vresapow/catkin_ws_project/src/kindr_ros/kindr_rviz_plugins/include/**",
+        "/home/vresapow/catkin_ws_project/src/message_logger/include/**",
+        "/home/vresapow/catkin_ws_project/src/kindr_ros/multi_dof_joint_trajectory_rviz_plugins/include/**",
+        "/home/vresapow/catkin_ws_project/src/point_cloud_io/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
