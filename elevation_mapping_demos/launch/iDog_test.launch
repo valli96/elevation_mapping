@@ -2,38 +2,21 @@
 
 <launch>
 
+  <arg name="use_sim_time" value="true"/> <!-- Tells ROS nodes asking for time to get the Gazebo-published simulation time, published over the ROS topic /clock-->
 
-
-  <!-- Publish tf 'base_footprint' as pose.-->
-  <!-- <node pkg="elevation_mapping_demos" type="tf_to_pose_publisher.py" name="waffle_pose_publisher">
-    <param name="from_frame" type="string" value="odom"/>
-    <param name="to_frame" type="string" value="base_footprint"/>
-  </node> -->
-
-  <!-- Add Covariance to the Pose data -->
-  <node pkg="elevation_mapping_demos" type="modify_pose_topic.py" name="modify_pose"/>
- 
- <!-- Publish some points from the rosbag -->
-  <!-- <remap from="/os1_cloud_node/points" to="/camera/depth/points_downsampled"/> -->
-  <node pkg="rosbag" type="play" name="player" output="screen" args="--loop /home/vresapow/catkin_ws_project/iDog.bag">
-  <param name ="/use_sim_time" value="true"/>
+  <!-- Play ROSBAG -->
+  <node pkg="rosbag" type="play" name="player" output="screen" args="--loop /home/idac/catkin_ws_project/iDog.bag">
+    <param name ="/use_sim_time" value="true"/>
   </node>
+  <!-- Add Covariance to the Pose data -->
+  <node pkg="elevation_mapping_demos" type="modify_pose_topic.py" name="modify_pose" output="screen"/>
+  
   <!-- integration from the IMU values to get the angular position -->
-  <node pkg="elevation_mapping_demos" type="angular_position_from_bag.py" name="modify_pose_imu"/>
-
-  <!-- Launch visualizations for the resulting elevation map -->
-  <include file="$(find elevation_mapping_demos)/launch/visualization.launch" />
+  <node pkg="elevation_mapping_demos" type="angular_position_from_bag.py" name="modify_pose_imu" />
 
   <!-- Elevation mapping node -->
   <node pkg="elevation_mapping" type="elevation_mapping" name="elevation_mapping" output="screen">
     <rosparam command="load" file="$(find elevation_mapping_demos)/config/robots/IDog_config.yaml" />
-    <rosparam command="load" file="$(find elevation_mapping_demos)/config/elevation_maps/simple_demo_map.yaml" />
-    <rosparam command="load" file="$(find elevation_mapping_demos)/config/postprocessing/postprocessor_pipeline.yaml" />
   </node>
 
-  <!-- Launch RViz with the demo configuration -->
-  
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find elevation_mapping_demos)/rviz/elevation_map_visualization.rviz" />
-
-
-</launch>
+  </launch>

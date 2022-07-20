@@ -5,6 +5,8 @@ import geometry_msgs.msg
 from geometry_msgs.msg import PoseStamped
 from geometry_msgs.msg import PoseWithCovarianceStamped
 from sensor_msgs.msg import Imu
+from sensor_msgs.msg import PointCloud2
+
 
 from tf.transformations import quaternion_from_euler
 
@@ -39,19 +41,43 @@ def callback_pose(msg):
     msg.pose.pose.orientation.y = angular_pose_quaternion[1]
     msg.pose.pose.orientation.x = angular_pose_quaternion[2]
     msg.pose.pose.orientation.w = angular_pose_quaternion[3]
+    msg.pose.pose.orientation.w = angular_pose_quaternion[3]
+    # print()
+    msg.header.stamp = time_lidar
+
     pose_pub.publish(msg)
     
+def callback_time(msg):
+    global time_lidar
+    time_lidar = msg.header.stamp
+    # print(time_lidar, ": header")
+    # print(time_lidar.secs, ": sec")
 
+    # print(type(time_lidar), ": header type")
+    # print(type(time_lidar.secs), ": sec type")
 
 
 def main():
     global time_last_msg
     global pose_pub
+    global time_lidar
+        rospy.Subscriber("/os1_cloud_node/points", PointCloud2,
+                    callback_time, queue_size=1)
+
+    rospy.Subscriber("/os1_cloud_node/points", PointCloud2,
+                    callback_time, queue_size=1)
+
+
     rospy.init_node('angular_integrator', anonymous=True)
+
+    rospy.Subscriber("/os1_cloud_node/points", PointCloud2,
+                    callback_time, queue_size=1)
     rospy.Subscriber("/os1_cloud_node/imu", Imu,
                      callback_integration, queue_size=1)
     rospy.Subscriber("/poseStamped_with_covariance_node", PoseWithCovarianceStamped,
                     callback_pose, queue_size=1)
+
+
     pose_pub = rospy.Publisher("/poseStamped_with_covariance_node_2",
                                PoseWithCovarianceStamped, queue_size=1)
     rospy.spin()

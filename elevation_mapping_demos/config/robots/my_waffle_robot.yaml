@@ -2,7 +2,7 @@
 map_frame_id:                               odom
 robot_base_frame_id:                        base_footprint
 robot_pose_with_covariance_topic:           /base_footprint_pose
-robot_pose_cache_size:                      200
+robot_pose_cache_size:                      300
 
 input_sources:
   front: # A name to identify the input source
@@ -13,5 +13,3 @@ input_sources:
     sensor_processor:
       type: perfect
 track_point_frame_id:                       base_footprint
-target_frame_init_submap:                   base_footprint
-# track_point_frame_id:                       os1_lidar
